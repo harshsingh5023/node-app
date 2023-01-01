@@ -70,18 +70,51 @@ h1 span:nth-child(7) {
     transform: translateY(0) rotate(0);
   }
 }
+.wrap{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+form{
+margin: 20px;
+}
+button{
+  background: white;
+  border: none;
+  color: #ea2e49;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: large;
+  font-weight: 500;
+}
+button:hover{
+  opacity: 0.8;
+}
         </style>
     </head>
     <body>
+      <div class="wrap">
+
         <h1>
-            <span>w</span>
-            <span>e</span>
-            <span>l</span>
-            <span>c</span>
-            <span>o</span>
-            <span>m</span>
-            <span>e</span>
+          <span>w</span>
+          <span>e</span>
+          <span>l</span>
+          <span>c</span>
+          <span>o</span>
+          <span>m</span>
+          <span>e</span>
         </h1>
+        <div style="display: flex;">
+
+          <form action="/registration" method="get">
+            <button type="submit">Register</button>
+          </form>
+          <form action="/login" method="get">
+            <button type="submit">Login</button>
+          </form>
+        </div>
+      </div>
         <!-- <script src="" async defer></script> -->
     </body>
 </html>

@@ -8,7 +8,6 @@ const cleanUpAndValidate = ({ name, email, username, password, phone }) => {
     if (typeof name != "string") reject("Invalid name");
     if (typeof password != "string") reject("Invalid Password");
     if (typeof username != "string") reject("Invalid username");
-    // if (typeof phone != "number") reject("Invalid username");
 
     if (!email || !password || !username) reject("Invalid Data");
 
@@ -79,7 +78,7 @@ const send_forget_mail = (email,verificationToken) => {
     from: sender,
     to: email,
     subject: "Foget your password",
-    html: `Press <a href=http://localhost:8000/forgetPassword/${verificationToken}> Here </a> forget password for your account`,
+    html: `Press <a href=https://node-app-production-ee83.up.railway.app/forgetPassword/${verificationToken}> Here </a> forget password for your account`,
   };
 
   mailer.sendMail(mailOptions, function (err, response) {
