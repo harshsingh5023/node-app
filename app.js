@@ -160,9 +160,9 @@ app.post("/registration", async (req, res) => {
 
 app.get("/verifyEmail/:id", (req, res) => {
   const token = req.params.id;
-  jwt.verify(token, "this is me", async (err, verifiedJwt) => {
+  jwt.verify(token, "hiiii", async (err, verifiedJwt) => {
     if (err) res.send(err);
-
+    // console.log()
     const userDb = await UserSchema.findOneAndUpdate(
       { email: verifiedJwt.email },
       { emailAuthenticated: true }
@@ -345,36 +345,23 @@ app.post("/resend_verification_mail", async (req, res) => {
   const verificationToken = jwtSign(email);
   let userExists;
   try {
-    userExists = await UserSchema.findOne({ email });
+    userExists = await UserSchema.findOne({ email: email });
     if (userExists.emailAuthenticated) {
       return res.send({
         status: 400,
         message: "User already verified",
       });
     }
-  } catch (err) {
-    return res.send({
-      status: 400,
-      message: "User does not exist",
-      error: err,
-    });
-  }
-  try {
     sendVerifcationEmail(email, verificationToken);
     return res.send({
       status: 200,
       message:
         "Verification has been sent to your mail Id. Please verify before login",
-      data: {
-        _id: userDB._id,
-        username: userDB.username,
-        email: userDB.email,
-      },
     });
   } catch (err) {
     return res.send({
       status: 400,
-      message: "Internal server error",
+      message: "User does not exist",
       error: err,
     });
   }
